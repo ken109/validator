@@ -74,18 +74,19 @@ type internalValidationFuncWrapper struct {
 
 // Validate contains the validator settings and cache
 type Validate struct {
-	tagName          string
-	pool             *sync.Pool
-	hasCustomFuncs   bool
-	hasTagNameFunc   bool
-	tagNameFunc      TagNameFunc
-	structLevelFuncs map[reflect.Type]StructLevelFuncCtx
-	customFuncs      map[reflect.Type]CustomTypeFunc
-	aliases          map[string]string
-	validations      map[string]internalValidationFuncWrapper
-	transTagFunc     map[ut.Translator]map[string]TranslationFunc // map[<locale>]map[<tag>]TranslationFunc
-	tagCache         *tagCache
-	structCache      *structCache
+	tagName                   string
+	pool                      *sync.Pool
+	hasCustomFuncs            bool
+	hasTagNameFunc            bool
+	tagNameFunc               TagNameFunc
+	structLevelFuncs          map[reflect.Type]StructLevelFuncCtx
+	customFuncs               map[reflect.Type]CustomTypeFunc
+	aliases                   map[string]string
+	validations               map[string]internalValidationFuncWrapper
+	transTagFunc              map[ut.Translator]map[string]TranslationFunc // map[<locale>]map[<tag>]TranslationFunc
+	tagCache                  *tagCache
+	structCache               *structCache
+	useActualTagWhenTranslate bool
 }
 
 // New returns a new instance of 'validate' with sane defaults.
@@ -655,4 +656,8 @@ func (v *Validate) VarWithValueCtx(ctx context.Context, field interface{}, other
 	}
 	v.pool.Put(vd)
 	return
+}
+
+func (v *Validate) UseActualTagWhenTranslate() {
+	v.useActualTagWhenTranslate = true
 }

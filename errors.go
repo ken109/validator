@@ -266,7 +266,11 @@ func (fe *fieldError) Translate(ut ut.Translator) string {
 		return fe.Error()
 	}
 
-	fn, ok := m[fe.tag]
+	var tag = fe.tag
+	if fe.v.useActualTagWhenTranslate {
+		tag = fe.actualTag
+	}
+	fn, ok := m[tag]
 	if !ok {
 		return fe.Error()
 	}
