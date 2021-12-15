@@ -134,6 +134,10 @@ func (v *Validate) extractStructCache(current reflect.Value, sName string) *cStr
 			continue
 		}
 
+		if replace, ok := fld.Tag.Lookup("replace"); ok {
+			fld.Name = replace
+		}
+
 		customName = fld.Name
 
 		if v.hasTagNameFunc {
