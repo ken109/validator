@@ -1,0 +1,31 @@
+name: Fetch and merge upstream
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch and merge upstream
+        env:
+          NAME: ken109
+          EMAIL: kensukekubo19@gmail.com
+          REPO_FORK: https://github.com/go-playground/validator.git
+        run: |
+          git config --global user.name ${NAME}
+          git config --global user.email ${EMAIL}
+          
+          git config --global pull.rebase merges
+          
+          git pull --unshallow
+          
+          git remote add upstream ${REPO_FORK}
+          
+          git fetch upstream
+          
+          git checkout master
+          git merge --no-edit upstream/master
+          git push origin master

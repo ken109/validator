@@ -1,19 +1,19 @@
-package fa
+package vi
 
 import (
 	"testing"
 	"time"
 
 	. "github.com/go-playground/assert/v2"
-	english "github.com/go-playground/locales/en"
+	vietnamese "github.com/go-playground/locales/vi"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 )
 
 func TestTranslations(t *testing.T) {
-	eng := english.New()
-	uni := ut.New(eng, eng)
-	trans, _ := uni.GetTranslator("en")
+	vie := vietnamese.New()
+	uni := ut.New(vie, vie)
+	trans, _ := uni.GetTranslator("vi")
 
 	validate := validator.New()
 
@@ -103,7 +103,6 @@ func TestTranslations(t *testing.T) {
 		UUID3             string            `validate:"uuid3"`
 		UUID4             string            `validate:"uuid4"`
 		UUID5             string            `validate:"uuid5"`
-		ULID              string            `validate:"ulid"`
 		ASCII             string            `validate:"ascii"`
 		PrintableASCII    string            `validate:"printascii"`
 		MultiByte         string            `validate:"multibyte"`
@@ -142,6 +141,7 @@ func TestTranslations(t *testing.T) {
 		UniqueArray       [3]string         `validate:"unique"`
 		UniqueMap         map[string]string `validate:"unique"`
 		JSONString        string            `validate:"json"`
+		JWTString         string            `validate:"jwt"`
 		LowercaseString   string            `validate:"lowercase"`
 		UppercaseString   string            `validate:"uppercase"`
 		Datetime          string            `validate:"datetime=2006-01-02"`
@@ -214,470 +214,470 @@ func TestTranslations(t *testing.T) {
 	}{
 		{
 			ns:       "Test.IsColor",
-			expected: "IsColor باید یک رنگ معتبر باشد",
+			expected: "IsColor phải là màu sắc hợp lệ",
 		},
 		{
 			ns:       "Test.MAC",
-			expected: "MAC باید یک مک‌آدرس معتبر باشد",
+			expected: "MAC chỉ được chứa địa chỉ MAC",
 		},
 		{
 			ns:       "Test.IPAddr",
-			expected: "IPAddr باید یک آدرس آی‌پی قابل دسترس باشد",
+			expected: "IPAddr phải là địa chỉ IP có thể phân giải",
 		},
 		{
 			ns:       "Test.IPAddrv4",
-			expected: "IPAddrv4 باید یک آدرس آی‌پی IPv4 قابل دسترس باشد",
+			expected: "IPAddrv4 phải là địa chỉ IPv4 có thể phân giải",
 		},
 		{
 			ns:       "Test.IPAddrv6",
-			expected: "IPAddrv6 باید یک آدرس آی‌پی IPv6 قابل دسترس باشد",
+			expected: "IPAddrv6 phải là địa chỉ IPv6 có thể phân giải",
 		},
 		{
 			ns:       "Test.UDPAddr",
-			expected: "UDPAddr باید یک آدرس UDP معتبر باشد",
+			expected: "UDPAddr phải là địa chỉ UDP",
 		},
 		{
 			ns:       "Test.UDPAddrv4",
-			expected: "UDPAddrv4 باید یک آدرس UDP IPv4 معتبر باشد",
+			expected: "UDPAddrv4 phải là địa chỉ IPv4 UDP",
 		},
 		{
 			ns:       "Test.UDPAddrv6",
-			expected: "UDPAddrv6 باید یک آدرس UDP IPv6 معتبر باشد",
+			expected: "UDPAddrv6 phải là địa chỉ IPv6 UDP",
 		},
 		{
 			ns:       "Test.TCPAddr",
-			expected: "TCPAddr باید یک آدرس TCP معتبر باشد",
+			expected: "TCPAddr phải là địa chỉ TCP",
 		},
 		{
 			ns:       "Test.TCPAddrv4",
-			expected: "TCPAddrv4 باید یک آدرس TCP IPv4 معتبر باشد",
+			expected: "TCPAddrv4 phải là địa chỉ IPv4 TCP",
 		},
 		{
 			ns:       "Test.TCPAddrv6",
-			expected: "TCPAddrv6 باید یک آدرس TCP IPv6 معتبر باشد",
+			expected: "TCPAddrv6 phải là địa chỉ IPv6 TCP",
 		},
 		{
 			ns:       "Test.CIDR",
-			expected: "CIDR باید یک نشانه‌گذاری CIDR معتبر باشد",
+			expected: "CIDR chỉ được chứa CIDR notation",
 		},
 		{
 			ns:       "Test.CIDRv4",
-			expected: "CIDRv4 باید یک نشانه‌گذاری CIDR معتبر برای آدرس آی‌پی IPv4 باشد",
+			expected: "CIDRv4 chỉ được chứa CIDR notation của một địa chỉ IPv4",
 		},
 		{
 			ns:       "Test.CIDRv6",
-			expected: "CIDRv6 باید یک نشانه‌گذاری CIDR معتبر برای آدرس آی‌پی IPv6 باشد",
+			expected: "CIDRv6 chỉ được chứa CIDR notation của một địa chỉ IPv6",
 		},
 		{
 			ns:       "Test.SSN",
-			expected: "SSN باید یک شماره SSN معتبر باشد",
+			expected: "SSN phải là SSN number",
 		},
 		{
 			ns:       "Test.IP",
-			expected: "IP باید یک آدرس آی‌پی معتبر باشد",
+			expected: "IP phải là địa chỉ IP",
 		},
 		{
 			ns:       "Test.IPv4",
-			expected: "IPv4 باید یک آدرس آی‌پی IPv4 معتبر باشد",
+			expected: "IPv4 phải là địa chỉ IPv4",
 		},
 		{
 			ns:       "Test.IPv6",
-			expected: "IPv6 باید یک آدرس آی‌پی IPv6 معتبر باشد",
+			expected: "IPv6 phải là địa chỉ IPv6",
 		},
 		{
 			ns:       "Test.DataURI",
-			expected: "DataURI باید یک Data URI معتبر باشد",
+			expected: "DataURI chỉ được chứa Data URI",
 		},
 		{
 			ns:       "Test.Latitude",
-			expected: "Latitude باید یک عرض جغرافیایی معتبر باشد",
+			expected: "Latitude chỉ được chứa latitude (vỹ độ)",
 		},
 		{
 			ns:       "Test.Longitude",
-			expected: "Longitude باید یک طول جغرافیایی معتبر باشد",
+			expected: "Longitude chỉ được chứa longitude (kinh độ)",
 		},
 		{
 			ns:       "Test.MultiByte",
-			expected: "MultiByte باید شامل کاراکترهای چندبایته باشد",
+			expected: "MultiByte chỉ được chứa ký tự multibyte",
 		},
 		{
 			ns:       "Test.ASCII",
-			expected: "ASCII باید فقط شامل کاراکترهای اسکی باشد",
+			expected: "ASCII chỉ được chứa ký tự ASCII",
 		},
 		{
 			ns:       "Test.PrintableASCII",
-			expected: "PrintableASCII باید فقط شامل کاراکترهای اسکی قابل چاپ باشد",
+			expected: "PrintableASCII chỉ được chứa ký tự ASCII có thể in ấn",
 		},
 		{
 			ns:       "Test.UUID",
-			expected: "UUID باید یک UUID معتبر باشد",
+			expected: "UUID phải là giá trị UUID",
 		},
 		{
 			ns:       "Test.UUID3",
-			expected: "UUID3 باید یک UUID نسخه 3 معتبر باشد",
+			expected: "UUID3 phải là giá trị UUID phiên bản 3",
 		},
 		{
 			ns:       "Test.UUID4",
-			expected: "UUID4 باید یک UUID نسخه 4 معتبر باشد",
+			expected: "UUID4 phải là giá trị UUID phiên bản 4",
 		},
 		{
 			ns:       "Test.UUID5",
-			expected: "UUID5 باید یک UUID نسخه 5 معتبر باشد",
-		},
-		{
-			ns:       "Test.ULID",
-			expected: "ULID باید یک ULID معتبر باشد",
+			expected: "UUID5 phải là giá trị UUID phiên bản 5",
 		},
 		{
 			ns:       "Test.ISBN",
-			expected: "ISBN باید یک شابک معتبر باشد",
+			expected: "ISBN phải là số ISBN",
 		},
 		{
 			ns:       "Test.ISBN10",
-			expected: "ISBN10 باید یک شابک(ISBN-10) معتبر باشد",
+			expected: "ISBN10 phải là số ISBN-10",
 		},
 		{
 			ns:       "Test.ISBN13",
-			expected: "ISBN13 باید یک شابک(ISBN-13) معتبر باشد",
+			expected: "ISBN13 phải là số ISBN-13",
 		},
 		{
 			ns:       "Test.Excludes",
-			expected: "Excludes نمیتواند شامل 'text' باشد",
+			expected: "Excludes không được chứa chuỗi 'text'",
 		},
 		{
 			ns:       "Test.ExcludesAll",
-			expected: "ExcludesAll نمیتواند شامل کاراکترهای '!@#$' باشد",
+			expected: "ExcludesAll không được chứa bất kỳ ký tự nào trong nhóm ký tự '!@#$'",
 		},
 		{
 			ns:       "Test.ExcludesRune",
-			expected: "ExcludesRune نمیتواند شامل '☻' باشد",
+			expected: "ExcludesRune không được chứa '☻'",
 		},
 		{
 			ns:       "Test.ContainsAny",
-			expected: "ContainsAny باید شامل کاراکترهای '!@#$' باشد",
+			expected: "ContainsAny phải chứa ít nhất 1 trong cách ký tự sau '!@#$'",
 		},
 		{
 			ns:       "Test.Contains",
-			expected: "Contains باید شامل 'purpose' باشد",
+			expected: "Contains phải chứa chuỗi 'purpose'",
 		},
 		{
 			ns:       "Test.Base64",
-			expected: "Base64 باید یک متن درمبنای64 معتبر باشد",
+			expected: "Base64 phải là giá trị chuỗi Base64",
 		},
 		{
 			ns:       "Test.Email",
-			expected: "Email باید یک ایمیل معتبر باشد",
+			expected: "Email phải là giá trị email address",
 		},
 		{
 			ns:       "Test.URL",
-			expected: "URL باید یک آدرس اینترنتی معتبر باشد",
+			expected: "URL phải là giá trị URL",
 		},
 		{
 			ns:       "Test.URI",
-			expected: "URI باید یک URI معتبر باشد",
+			expected: "URI phải là giá trị URI",
 		},
 		{
 			ns:       "Test.RGBColorString",
-			expected: "RGBColorString باید یک کد رنگ RGB باشد",
+			expected: "RGBColorString phải là giá trị RGB color",
 		},
 		{
 			ns:       "Test.RGBAColorString",
-			expected: "RGBAColorString باید یک کد رنگ RGBA باشد",
+			expected: "RGBAColorString phải là giá trị RGBA color",
 		},
 		{
 			ns:       "Test.HSLColorString",
-			expected: "HSLColorString باید یک کد رنگ HSL باشد",
+			expected: "HSLColorString phải là giá trị HSL color",
 		},
 		{
 			ns:       "Test.HSLAColorString",
-			expected: "HSLAColorString باید یک کد رنگ HSLA باشد",
+			expected: "HSLAColorString phải là giá trị HSLA color",
 		},
 		{
 			ns:       "Test.HexadecimalString",
-			expected: "HexadecimalString باید یک عدد درمبنای16 باشد",
+			expected: "HexadecimalString phải là giá trị hexadecimal",
 		},
 		{
 			ns:       "Test.HexColorString",
-			expected: "HexColorString باید یک کد رنگ HEX باشد",
+			expected: "HexColorString phải là giá trị HEX color",
 		},
 		{
 			ns:       "Test.NumberString",
-			expected: "NumberString باید یک عدد معتبر باشد",
+			expected: "NumberString chỉ được chứa giá trị số",
 		},
 		{
 			ns:       "Test.NumericString",
-			expected: "NumericString باید یک عدد معتبر باشد",
+			expected: "NumericString chỉ được chứa giá trị số hoặc số dưới dạng chữ",
 		},
 		{
 			ns:       "Test.AlphanumString",
-			expected: "AlphanumString میتواند فقط شامل حروف و اعداد باشد",
+			expected: "AlphanumString chỉ được chứa ký tự dạng alphanumeric",
 		},
 		{
 			ns:       "Test.AlphaString",
-			expected: "AlphaString میتواند فقط شامل حروف باشد",
+			expected: "AlphaString chỉ được chứa ký tự dạng alphabetic",
 		},
 		{
 			ns:       "Test.LtFieldString",
-			expected: "طول LtFieldString باید کمتر از MaxString باشد",
+			expected: "LtFieldString chỉ được nhỏ hơn MaxString",
 		},
 		{
 			ns:       "Test.LteFieldString",
-			expected: "طول LteFieldString باید کمتر یا برابر MaxString باشد",
+			expected: "LteFieldString chỉ được nhỏ hơn hoặc bằng MaxString",
 		},
 		{
 			ns:       "Test.GtFieldString",
-			expected: "طول GtFieldString باید بیشتر از MaxString باشد",
+			expected: "GtFieldString phải lớn hơn MaxString",
 		},
 		{
 			ns:       "Test.GteFieldString",
-			expected: "طول GteFieldString باید بیشتر یا برابر MaxString باشد",
+			expected: "GteFieldString phải lớn hơn hoặc bằng MaxString",
 		},
 		{
 			ns:       "Test.NeFieldString",
-			expected: "NeFieldString نمیتواند برابر EqFieldString باشد",
+			expected: "NeFieldString không được phép bằng EqFieldString",
 		},
 		{
 			ns:       "Test.LtCSFieldString",
-			expected: "طول LtCSFieldString باید کمتر از Inner.LtCSFieldString باشد",
+			expected: "LtCSFieldString chỉ được nhỏ hơn Inner.LtCSFieldString",
 		},
 		{
 			ns:       "Test.LteCSFieldString",
-			expected: "طول LteCSFieldString باید کمتر یا برابر Inner.LteCSFieldString باشد",
+			expected: "LteCSFieldString chỉ được nhỏ hơn hoặc bằng Inner.LteCSFieldString",
 		},
 		{
 			ns:       "Test.GtCSFieldString",
-			expected: "طول GtCSFieldString باید بیشتر از Inner.GtCSFieldString باشد",
+			expected: "GtCSFieldString phải lớn hơn Inner.GtCSFieldString",
 		},
 		{
 			ns:       "Test.GteCSFieldString",
-			expected: "طول GteCSFieldString باید بیشتر یا برابر Inner.GteCSFieldString باشد",
+			expected: "GteCSFieldString phải lớn hơn hoặc bằng Inner.GteCSFieldString",
 		},
 		{
 			ns:       "Test.NeCSFieldString",
-			expected: "NeCSFieldString نمیتواند برابر Inner.NeCSFieldString باشد",
+			expected: "NeCSFieldString không được phép bằng Inner.NeCSFieldString",
 		},
 		{
 			ns:       "Test.EqCSFieldString",
-			expected: "EqCSFieldString باید برابر Inner.EqCSFieldString باشد",
+			expected: "EqCSFieldString phải bằng Inner.EqCSFieldString",
 		},
 		{
 			ns:       "Test.EqFieldString",
-			expected: "EqFieldString باید برابر MaxString باشد",
+			expected: "EqFieldString phải bằng MaxString",
 		},
 		{
 			ns:       "Test.GteString",
-			expected: "طول GteString باید حداقل 3 کاراکتر باشد",
+			expected: "GteString phải có độ dài ít nhất 3 ký tự",
 		},
 		{
 			ns:       "Test.GteNumber",
-			expected: "GteNumber باید بیشتر یا برابر 5.56 باشد",
+			expected: "GteNumber phải là 5,56 hoặc lớn hơn",
 		},
 		{
 			ns:       "Test.GteMultiple",
-			expected: "GteMultiple باید شامل حداقل 2 آیتم باشد",
+			expected: "GteMultiple phải chứa ít nhất 2 phần tử",
 		},
 		{
 			ns:       "Test.GteTime",
-			expected: "GteTime باید بعد یا برابر تاریخ و زمان کنونی باشد",
+			expected: "GteTime phải lớn hơn hoặc bằng Ngày & Giờ hiện tại",
 		},
 		{
 			ns:       "Test.GtString",
-			expected: "طول GtString باید بیشتر از 3 کاراکتر باشد",
+			expected: "GtString phải có độ dài lớn hơn 3 ký tự",
 		},
 		{
 			ns:       "Test.GtNumber",
-			expected: "GtNumber باید بیشتر از 5.56 باشد",
+			expected: "GtNumber phải lớn hơn 5,56",
 		},
 		{
 			ns:       "Test.GtMultiple",
-			expected: "GtMultiple باید دارای بیشتر از 2 آیتم باشد",
+			expected: "GtMultiple phải chứa nhiều hơn 2 phần tử",
 		},
 		{
 			ns:       "Test.GtTime",
-			expected: "GtTime باید بعد از تاریخ و زمان کنونی باشد",
+			expected: "GtTime phải lớn hơn Ngày & Giờ hiện tại",
 		},
 		{
 			ns:       "Test.LteString",
-			expected: "طول LteString باید حداکثر 3 کاراکتر باشد",
+			expected: "LteString chỉ được có độ dài tối đa là 3 ký tự",
 		},
 		{
 			ns:       "Test.LteNumber",
-			expected: "LteNumber باید کمتر یا برابر 5.56 باشد",
+			expected: "LteNumber phải là 5,56 hoặc nhỏ hơn",
 		},
 		{
 			ns:       "Test.LteMultiple",
-			expected: "LteMultiple باید حداکثر شامل 2 آیتم باشد",
+			expected: "LteMultiple chỉ được chứa nhiều nhất 2 phần tử",
 		},
 		{
 			ns:       "Test.LteTime",
-			expected: "LteTime باید قبل یا برابر تاریخ و زمان کنونی باشد",
+			expected: "LteTime chỉ được nhỏ hơn hoặc bằng Ngày & Giờ hiện tại",
 		},
 		{
 			ns:       "Test.LtString",
-			expected: "طول LtString باید کمتر از 3 کاراکتر باشد",
+			expected: "LtString phải có độ dài nhỏ hơn 3 ký tự",
 		},
 		{
 			ns:       "Test.LtNumber",
-			expected: "LtNumber باید کمتر از 5.56 باشد",
+			expected: "LtNumber phải nhỏ hơn 5,56",
 		},
 		{
 			ns:       "Test.LtMultiple",
-			expected: "LtMultiple باید دارای کمتر از 2 آیتم باشد",
+			expected: "LtMultiple chỉ được chứa ít hơn 2 phần tử",
 		},
 		{
 			ns:       "Test.LtTime",
-			expected: "LtTime باید قبل از تاریخ و زمان کنونی باشد",
+			expected: "LtTime phải nhỏ hơn Ngày & Giờ hiện tại",
 		},
 		{
 			ns:       "Test.NeString",
-			expected: "NeString نباید برابر  باشد",
+			expected: "NeString không được bằng ",
 		},
 		{
 			ns:       "Test.NeNumber",
-			expected: "NeNumber نباید برابر 0.00 باشد",
+			expected: "NeNumber không được bằng 0.00",
 		},
 		{
 			ns:       "Test.NeMultiple",
-			expected: "NeMultiple نباید برابر 0 باشد",
+			expected: "NeMultiple không được bằng 0",
 		},
 		{
 			ns:       "Test.EqString",
-			expected: "EqString برابر 3 نمیباشد",
+			expected: "EqString không bằng 3",
 		},
 		{
 			ns:       "Test.EqNumber",
-			expected: "EqNumber برابر 2.33 نمیباشد",
+			expected: "EqNumber không bằng 2.33",
 		},
 		{
 			ns:       "Test.EqMultiple",
-			expected: "EqMultiple برابر 7 نمیباشد",
+			expected: "EqMultiple không bằng 7",
 		},
 		{
 			ns:       "Test.MaxString",
-			expected: "طول MaxString باید حداکثر 3 کاراکتر باشد",
+			expected: "MaxString chỉ được chứa tối đa 3 ký tự",
 		},
 		{
 			ns:       "Test.MaxNumber",
-			expected: "MaxNumber باید کمتر یا برابر 1,113.00 باشد",
+			expected: "MaxNumber phải là 1.113,00 hoặc nhỏ hơn",
 		},
 		{
 			ns:       "Test.MaxMultiple",
-			expected: "MaxMultiple باید شامل حداکثر 7 آیتم باشد",
+			expected: "MaxMultiple chỉ được chứa tối đa 7 phần tử",
 		},
 		{
 			ns:       "Test.MinString",
-			expected: "طول MinString باید حداقل 1 کاراکتر باشد",
+			expected: "MinString phải chứa ít nhất 1 ký tự",
 		},
 		{
 			ns:       "Test.MinNumber",
-			expected: "MinNumber باید بزرگتر یا برابر 1,113.00 باشد",
+			expected: "MinNumber phải bằng 1.113,00 hoặc lớn hơn",
 		},
 		{
 			ns:       "Test.MinMultiple",
-			expected: "MinMultiple باید شامل حداقل 7 آیتم باشد",
+			expected: "MinMultiple phải chứa ít nhất 7 phần tử",
 		},
 		{
 			ns:       "Test.LenString",
-			expected: "طول LenString باید 1 کاراکتر باشد",
+			expected: "LenString phải có độ dài là 1 ký tự",
 		},
 		{
 			ns:       "Test.LenNumber",
-			expected: "طول LenNumber باید برابر 1,113.00 باشد",
+			expected: "LenNumber phải bằng 1.113,00",
 		},
 		{
 			ns:       "Test.LenMultiple",
-			expected: "تعداد LenMultiple باید برابر 7 آیتم باشد",
+			expected: "LenMultiple phải chứa 7 phần tử",
 		},
 		{
 			ns:       "Test.RequiredString",
-			expected: "فیلد RequiredString اجباری میباشد",
+			expected: "RequiredString không được bỏ trống",
 		},
 		{
 			ns:       "Test.RequiredNumber",
-			expected: "فیلد RequiredNumber اجباری میباشد",
+			expected: "RequiredNumber không được bỏ trống",
 		},
 		{
 			ns:       "Test.RequiredMultiple",
-			expected: "فیلد RequiredMultiple اجباری میباشد",
+			expected: "RequiredMultiple không được bỏ trống",
 		},
 		{
 			ns:       "Test.StrPtrMinLen",
-			expected: "طول StrPtrMinLen باید حداقل 10 کاراکتر باشد",
+			expected: "StrPtrMinLen phải chứa ít nhất 10 ký tự",
 		},
 		{
 			ns:       "Test.StrPtrMaxLen",
-			expected: "طول StrPtrMaxLen باید حداکثر 1 کاراکتر باشد",
+			expected: "StrPtrMaxLen chỉ được chứa tối đa 1 ký tự",
 		},
 		{
 			ns:       "Test.StrPtrLen",
-			expected: "طول StrPtrLen باید 2 کاراکتر باشد",
+			expected: "StrPtrLen phải có độ dài là 2 ký tự",
 		},
 		{
 			ns:       "Test.StrPtrLt",
-			expected: "طول StrPtrLt باید کمتر از 1 کاراکتر باشد",
+			expected: "StrPtrLt phải có độ dài nhỏ hơn 1 ký tự",
 		},
 		{
 			ns:       "Test.StrPtrLte",
-			expected: "طول StrPtrLte باید حداکثر 1 کاراکتر باشد",
+			expected: "StrPtrLte chỉ được có độ dài tối đa là 1 ký tự",
 		},
 		{
 			ns:       "Test.StrPtrGt",
-			expected: "طول StrPtrGt باید بیشتر از 10 کاراکتر باشد",
+			expected: "StrPtrGt phải có độ dài lớn hơn 10 ký tự",
 		},
 		{
 			ns:       "Test.StrPtrGte",
-			expected: "طول StrPtrGte باید حداقل 10 کاراکتر باشد",
+			expected: "StrPtrGte phải có độ dài ít nhất 10 ký tự",
 		},
 		{
 			ns:       "Test.OneOfString",
-			expected: "OneOfString باید یکی از مقادیر [red green] باشد",
+			expected: "OneOfString phải là trong những giá trị [red green]",
 		},
 		{
 			ns:       "Test.OneOfInt",
-			expected: "OneOfInt باید یکی از مقادیر [5 63] باشد",
+			expected: "OneOfInt phải là trong những giá trị [5 63]",
 		},
 		{
 			ns:       "Test.UniqueSlice",
-			expected: "UniqueSlice باید شامل مقادیر منحصربفرد باشد",
+			expected: "UniqueSlice chỉ được chứa những giá trị không trùng lặp",
 		},
 		{
 			ns:       "Test.UniqueArray",
-			expected: "UniqueArray باید شامل مقادیر منحصربفرد باشد",
+			expected: "UniqueArray chỉ được chứa những giá trị không trùng lặp",
 		},
 		{
 			ns:       "Test.UniqueMap",
-			expected: "UniqueMap باید شامل مقادیر منحصربفرد باشد",
+			expected: "UniqueMap chỉ được chứa những giá trị không trùng lặp",
 		},
 		{
 			ns:       "Test.JSONString",
-			expected: "JSONString باید یک json معتبر باشد",
+			expected: "JSONString phải là một chuỗi json hợp lệ",
+		},
+		{
+			ns:       "Test.JWTString",
+			expected: "JWTString phải là một chuỗi jwt hợp lệ",
 		},
 		{
 			ns:       "Test.LowercaseString",
-			expected: "LowercaseString باید یک متن با حروف کوچک باشد",
+			expected: "LowercaseString phải được viết thường",
 		},
 		{
 			ns:       "Test.UppercaseString",
-			expected: "UppercaseString باید یک متن با حروف بزرگ باشد",
+			expected: "UppercaseString phải được viết hoa",
 		},
 		{
 			ns:       "Test.Datetime",
-			expected: "فرمت Datetime با 2006-01-02 سازگار نیست",
+			expected: "Datetime không trùng định dạng ngày tháng 2006-01-02",
 		},
 		{
 			ns:       "Test.PostCode",
-			expected: "PostCode یک کدپستی معتبر کشور SG نیست",
+			expected: "PostCode sai định dạng postcode của quốc gia SG",
 		},
 		{
 			ns:       "Test.PostCodeByField",
-			expected: "PostCodeByField یک کدپستی معتبر کشور فیلد PostCodeCountry نیست",
+			expected: "PostCodeByField sai định dạng postcode của quốc gia tương ứng thuộc trường PostCodeCountry",
 		},
 		{
-			ns:         "Test.Image",
-			expected: "Image باید یک تصویر معتبر باشد",
+			ns: "Test.Image",
+			expected: "Image phải là một hình ảnh hợp lệ",
 		},
 	}
-	
+
 	for _, tt := range tests {
 
 		var fe validator.FieldError

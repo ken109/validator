@@ -27,6 +27,7 @@ func TestTranslations(t *testing.T) {
 		GteCSFieldString string
 		LtCSFieldString  string
 		LteCSFieldString string
+		RequiredIf       string
 	}
 
 	type Test struct {
@@ -34,6 +35,7 @@ func TestTranslations(t *testing.T) {
 		RequiredString    string            `validate:"required"`
 		RequiredNumber    int               `validate:"required"`
 		RequiredMultiple  []string          `validate:"required"`
+		RequiredIf        string            `validate:"required_if=Inner.RequiredIf abcd"`
 		LenString         string            `validate:"len=1"`
 		LenNumber         float64           `validate:"len=1113.00"`
 		LenMultiple       []string          `validate:"len=7"`
@@ -128,6 +130,7 @@ func TestTranslations(t *testing.T) {
 		IPAddrv6          string            `validate:"ip6_addr"`
 		UinxAddr          string            `validate:"unix_addr"` // can't fail from within Go's net package currently, but maybe in the future
 		MAC               string            `validate:"mac"`
+		FQDN              string            `validate:"fqdn"`
 		IsColor           string            `validate:"iscolor"`
 		StrPtrMinLen      *string           `validate:"min=10"`
 		StrPtrMaxLen      *string           `validate:"max=1"`
@@ -149,6 +152,9 @@ func TestTranslations(t *testing.T) {
 		PostCode          string            `validate:"postcode_iso3166_alpha2=SG"`
 		PostCodeCountry   string
 		PostCodeByField   string `validate:"postcode_iso3166_alpha2_field=PostCodeCountry"`
+		BooleanString     string `validate:"boolean"`
+		Image             string `validate:"image"`
+		CveString         string `validate:"cve"`
 	}
 
 	var test Test
@@ -201,6 +207,10 @@ func TestTranslations(t *testing.T) {
 	test.UniqueSlice = []string{"1234", "1234"}
 	test.UniqueMap = map[string]string{"key1": "1234", "key2": "1234"}
 	test.Datetime = "2008-Feb-01"
+	test.BooleanString = "A"
+	test.CveString = "A"
+
+	test.Inner.RequiredIf = "abcd"
 
 	err = validate.Struct(test)
 	NotEqual(t, err, nil)
@@ -219,6 +229,10 @@ func TestTranslations(t *testing.T) {
 		{
 			ns:       "Test.MAC",
 			expected: "MAC must contain a valid MAC address",
+		},
+		{
+			ns:       "Test.FQDN",
+			expected: "FQDN must be a valid FQDN",
 		},
 		{
 			ns:       "Test.IPAddr",
@@ -593,6 +607,10 @@ func TestTranslations(t *testing.T) {
 			expected: "RequiredString is a required field",
 		},
 		{
+			ns:       "Test.RequiredIf",
+			expected: "RequiredIf is a required field",
+		},
+		{
 			ns:       "Test.RequiredNumber",
 			expected: "RequiredNumber is a required field",
 		},
@@ -675,6 +693,18 @@ func TestTranslations(t *testing.T) {
 		{
 			ns:       "Test.PostCodeByField",
 			expected: "PostCodeByField does not match postcode format of country in PostCodeCountry field",
+		},
+		{
+			ns:       "Test.BooleanString",
+			expected: "BooleanString must be a valid boolean value",
+		},
+		{
+			ns:       "Test.Image",
+			expected: "Image must be a valid image",
+		},
+		{
+			ns:       "Test.CveString",
+			expected: "CveString must be a valid cve identifier",
 		},
 	}
 
