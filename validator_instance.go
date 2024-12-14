@@ -22,6 +22,7 @@ const (
 	structOnlyTag         = "structonly"
 	noStructLevelTag      = "nostructlevel"
 	omitempty             = "omitempty"
+	omitnil               = "omitnil"
 	isdefault             = "isdefault"
 	requiredWithoutAllTag = "required_without_all"
 	requiredWithoutTag    = "required_without"
@@ -73,8 +74,8 @@ type CustomTypeFunc func(field reflect.Value) interface{}
 type TagNameFunc func(field reflect.StructField) string
 
 type internalValidationFuncWrapper struct {
-	fn                FuncCtx
-	runValidatinOnNil bool
+	fn                 FuncCtx
+	runValidationOnNil bool
 }
 
 // Validate contains the validator settings and cache
@@ -93,6 +94,7 @@ type Validate struct {
 	hasCustomFuncs            bool
 	hasTagNameFunc            bool
 	requiredStructEnabled     bool
+	privateFieldValidation    bool
 	useActualTagWhenTranslate bool
 }
 
@@ -244,7 +246,7 @@ func (v *Validate) registerValidation(tag string, fn FuncCtx, bakedIn bool, nilC
 	if !bakedIn && (ok || strings.ContainsAny(tag, restrictedTagChars)) {
 		panic(fmt.Sprintf(restrictedTagErr, tag))
 	}
-	v.validations[tag] = internalValidationFuncWrapper{fn: fn, runValidatinOnNil: nilCheckable}
+	v.validations[tag] = internalValidationFuncWrapper{fn: fn, runValidationOnNil: nilCheckable}
 	return nil
 }
 
@@ -675,7 +677,7 @@ func (v *Validate) VarWithValue(field interface{}, other interface{}, tag string
 }
 
 // VarWithValueCtx validates a single variable, against another variable/field's value using tag style validation and
-// allows passing of contextual validation validation information via context.Context.
+// allows passing of contextual validation information via context.Context.
 // eg.
 // s1 := "abcd"
 // s2 := "abcd"

@@ -1,7 +1,7 @@
 Package validator
 =================
 <img align="right" src="logo.png">[![Join the chat at https://gitter.im/go-playground/validator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/go-playground/validator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-![Project status](https://img.shields.io/badge/version-10.15.4-green.svg)
+![Project status](https://img.shields.io/badge/version-10.23.0-green.svg)
 [![Build Status](https://travis-ci.org/go-playground/validator.svg?branch=master)](https://travis-ci.org/go-playground/validator)
 [![Coverage Status](https://coveralls.io/repos/go-playground/validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/go-playground/validator?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-playground/validator)](https://goreportcard.com/report/github.com/go-playground/validator)
@@ -21,6 +21,11 @@ It has the following **unique** features:
 -   Extraction of custom defined Field Name e.g. can specify to extract the JSON name while validating and have it available in the resulting FieldError
 -   Customizable i18n aware error messages.
 -   Default validator for the [gin](https://github.com/gin-gonic/gin) web framework; upgrading from v8 to v9 in gin see [here](https://github.com/go-playground/validator/tree/master/_examples/gin-upgrading-overriding)
+
+A Call for Maintainers
+----------------------
+
+Please read the discussiong started [here](https://github.com/go-playground/validator/discussions/1330) if you are interested in contributing/helping maintain this package.
 
 Installation
 ------------
@@ -163,6 +168,7 @@ validate := validator.New(validator.WithRequiredStructEnabled())
 | btc_addr_bech32 | Bitcoin Bech32 Address (segwit) |
 | credit_card | Credit Card Number |
 | mongodb | MongoDB ObjectID |
+| mongodb_connection_string | MongoDB Connection String |
 | cron | Cron |
 | spicedb | SpiceDb ObjectID/Permission/Type |
 | datetime | Datetime |
@@ -178,6 +184,7 @@ validate := validator.New(validator.WithRequiredStructEnabled())
 | isbn | International Standard Book Number |
 | isbn10 | International Standard Book Number 10 |
 | isbn13 | International Standard Book Number 13 |
+| issn | International Standard Serial Number |
 | iso3166_1_alpha2 | Two-letter country code (ISO 3166-1 alpha-2) |
 | iso3166_1_alpha3 | Three-letter country code (ISO 3166-1 alpha-3) |
 | iso3166_1_alpha_numeric | Numeric country code (ISO 3166-1 numeric) |
